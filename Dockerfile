@@ -5,6 +5,7 @@ RUN sudo apt-get update \
     ros-noetic-rosserial-server \
     ros-noetic-rosserial-python \
     ros-noetic-rosserial-arduino \
+    ros-noetic-rosserial-server \
     && rm -rf /var/lib/apt/lists/* \
     && echo "source /opt/ros/noetic/setup.bash" >> /root/.bashrc
     # && echo "[ -f /opt/barracuda-dvl/catkin_ws/devel/setup.bash ] && source /opt/barracuda-dvl/catkin_ws/devel/setup.bash" >> /root/.bashrc \ 
