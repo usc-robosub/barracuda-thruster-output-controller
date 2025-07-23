@@ -34,8 +34,8 @@ def main():
         
 def write_to_target(bus, address, register, duty_cycle):
     safe_write_byte(bus, address, register, duty_cycle)
-        sleep(sleep_time)
-        read_duty_cycles(bus, address)
+    sleep(sleep_time)
+    read_duty_cycles(bus, address)
 
 
 # def read_values(bus, address):
