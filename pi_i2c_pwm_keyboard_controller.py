@@ -34,7 +34,6 @@ def main():
         
         while running:
             safe_write_byte(bus, address, 0, cur_duty_cycle)
-            print(f"sent width (us) {cur_duty_cycle / 256 * (1/333) * 1000000}")
             sleep(sleep_time)
     finally:
         # Reset to stopped position before exiting
@@ -59,6 +58,7 @@ def press(key):
     if key == 'p':
         read_duty_cycles(bus, address)
     print(cur_duty_cycle)
+    print("sent width (us) {cur_duty_cycle / 256 * (1/333) * 1000000}")
         
         
 
