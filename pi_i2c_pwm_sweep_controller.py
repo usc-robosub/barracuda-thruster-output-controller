@@ -15,19 +15,24 @@ max_duty_cycle = 217
 
 sleep_time = 0.1
 
+registers = [0, 2, 4, 6]
+
 def main():
     address = 0x2D
     bus = SMBus(1)
     try:
         safe_write_byte(bus, address, 0, stopped_duty_cycle)
         for i in range(stopped_duty_cycle, max_duty_cycle):
-            write_to_target(bus, address, 0, i)
+            for reg in registers:
+                write_to_target(bus, address, reg, i)
             
         for i in range(max_duty_cycle, min_duty_cycle - 1, -1):
-            write_to_target(bus, address, 0, i)
+            for reg in registers:
+                write_to_target(bus, address, reg, i)
             
         for i in range(min_duty_cycle, stopped_duty_cycle + 1):
-            write_to_target(bus, address, 0, i)
+            for reg in registers:
+                write_to_target(bus, address, reg, i)
             
     finally:
         bus.close()
