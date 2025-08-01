@@ -25,6 +25,8 @@ cur_duty_cycle = stopped_duty_cycle
 address = 0x2D
 bus = SMBus(1)
 
+registers = [0, 2, 4, 6]
+
 def main():
     
     try:
@@ -33,11 +35,13 @@ def main():
         keyboard_thread.start()
         
         while running:
-            safe_write_byte(bus, address, 0, cur_duty_cycle)
+            for reg in registers:
+                safe_write_byte(bus, address, reg, cur_duty_cycle)
             sleep(sleep_time)
     finally:
         # Reset to stopped position before exiting
-        safe_write_byte(bus, address, 0, stopped_duty_cycle)
+        for reg in registers:
+            safe_write_byte(bus, address, reg, stopped_duty_cycle)
         bus.close()
         
 def start_keyboard_listener():
