@@ -45,7 +45,7 @@ thruster_organization = {
 
 i2c_addresses = [0x2D, 0x2E]
 
-cur_address = 0x2D
+cur_address = 0x2E
 cur_register = 0
 
 def main():
