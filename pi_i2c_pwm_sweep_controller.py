@@ -17,22 +17,36 @@ sleep_time = 0.1
 
 registers = [0, 2, 4, 6]
 
+cur_address = 0x2D
+cur_register = 0
+
+ThrusterConfig = namedtuple('ThrusterConfig', ['i2c_address', 'register'])
+thruster_organization = {
+    0: ThrusterConfig(0x2d, 0),
+    1: ThrusterConfig(0x2d, 2),
+    2: ThrusterConfig(0x2d, 4),
+    3: ThrusterConfig(0x2d, 6),
+    4: ThrusterConfig(0x2d, 0),
+    5: ThrusterConfig(0x2d, 2),
+    6: ThrusterConfig(0x2d, 4),
+    7: ThrusterConfig(0x2d, 6)
+}
+
 def main():
-    address = 0x2D
     bus = SMBus(1)
     try:
-        safe_write_byte(bus, address, 0, stopped_duty_cycle)
+        safe_write_byte(bus, cur_address, 0, stopped_duty_cycle)
         for i in range(stopped_duty_cycle, max_duty_cycle):
             for reg in registers:
-                write_to_target(bus, address, reg, i)
+                write_to_target(bus, cur_address, reg, i)
             
         for i in range(max_duty_cycle, min_duty_cycle - 1, -1):
             for reg in registers:
-                write_to_target(bus, address, reg, i)
+                write_to_target(bus, cur_address, reg, i)
             
         for i in range(min_duty_cycle, stopped_duty_cycle + 1):
             for reg in registers:
-                write_to_target(bus, address, reg, i)
+                write_to_target(bus, cur_address, reg, i)
             
     finally:
         bus.close()
