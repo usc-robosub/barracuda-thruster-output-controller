@@ -52,8 +52,9 @@ def main():
 
     # init thrusters
     for address in i2c_addresses:
-        for reg in registers:
-            safe_write_byte(bus, address, reg, stopped_duty_cycle)
+        if address == 0x2E:
+            for reg in registers:
+                safe_write_byte(bus, address, reg, stopped_duty_cycle)
     
     try:
         keyboard_thread = threading.Thread(target=start_keyboard_listener)
