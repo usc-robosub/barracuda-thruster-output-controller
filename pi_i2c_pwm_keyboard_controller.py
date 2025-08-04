@@ -49,7 +49,7 @@ cur_address = 0x2E
 cur_register = 0
 
 def main():
-
+    print(f"cur_address={cur_address}")
     # init thrusters
     for address in i2c_addresses:
         if address == 0x2E:
