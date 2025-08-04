@@ -37,10 +37,10 @@ thruster_organization = {
     1: ThrusterConfig(0x2d, 2),
     2: ThrusterConfig(0x2d, 4),
     3: ThrusterConfig(0x2d, 6),
-    4: ThrusterConfig(0x2d, 0),
-    5: ThrusterConfig(0x2d, 2),
-    6: ThrusterConfig(0x2d, 4),
-    7: ThrusterConfig(0x2d, 6)
+    4: ThrusterConfig(0x2e, 0),
+    5: ThrusterConfig(0x2e, 2),
+    6: ThrusterConfig(0x2e, 4),
+    7: ThrusterConfig(0x2e, 6)
 }
 
 i2c_addresses = [0x2D, 0x2E]
@@ -88,7 +88,7 @@ def press(key):
     if key == 'p':
         read_duty_cycles(bus, address)
     
-    if '1' <= key <= '8':
+    if '0' <= key <= '7':
         thruster_idx = int(key)
         print(f"thruster_idx={thruster_idx}")
         cur_address = thruster_organization[thruster_idx].i2c_address
