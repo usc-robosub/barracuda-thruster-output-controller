@@ -4,6 +4,7 @@
 
 import struct
 from time import sleep
+from collections import namedtuple
 
 from smbus2 import *
 
