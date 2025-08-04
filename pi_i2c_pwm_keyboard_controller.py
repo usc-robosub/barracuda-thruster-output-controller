@@ -61,9 +61,9 @@ def main():
         keyboard_thread.daemon = True
         keyboard_thread.start()
         
-        # while running:
-        #     safe_write_byte(bus, cur_address, cur_register, cur_duty_cycle)
-        #     sleep(sleep_time)
+        while running:
+            safe_write_byte(bus, cur_address, cur_register, cur_duty_cycle)
+            sleep(sleep_time)
     finally:
         # Reset to stopped position before exiting
         for reg in registers:
