@@ -90,8 +90,11 @@ def press(key):
     
     if '1' <= key <= '8':
         thruster_idx = int(key)
+        print(f"thruster_idx={thruster_idx}")
         cur_address = thruster_organization[thruster_idx].i2c_address
+        print(f"cur_address={cur_address}")
         cur_register = thruster_organization[thruster_idx].register
+        print(f"cur_register={cur_register}")
 
     print(cur_duty_cycle)
     print("sent width (us) {cur_duty_cycle / 256 * (1/333) * 1000000}")
