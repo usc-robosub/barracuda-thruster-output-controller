@@ -52,8 +52,7 @@ def main():
     print(f"cur_address={cur_address}")
     # init thrusters
     for address in i2c_addresses:
-        if address == 0x2E:
-            for reg in registers:
+        for reg in registers:
                 safe_write_byte(bus, address, reg, stopped_duty_cycle)
     
     try:
